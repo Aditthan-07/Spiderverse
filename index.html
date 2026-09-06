@@ -1,0 +1,304 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Web Slinger: City Rush - Superhero Web-Swinging Game</title>
+    <link rel="shortcut icon" href="images/standing.png" type="image/png">
+    <link rel="stylesheet" href="css/spiderman-game.css">
+</head>
+<body>
+    <div id="game-app">
+        <div id="canvas-container">
+            <canvas id="game-canvas" width="960" height="540"></canvas>
+
+            <!-- GAMEPLAY HUD -->
+            <div id="hud">
+                <div class="hud-top-bar">
+                    <!-- Left: Health & Ammo & Level -->
+                    <div class="hud-left">
+                        <div class="hud-health-box" id="hud-health">
+                            <span class="hud-heart full">♥</span>
+                            <span class="hud-heart full">♥</span>
+                            <span class="hud-heart full">♥</span>
+                            <span class="hud-heart full">♥</span>
+                            <span class="hud-heart full">♥</span>
+                        </div>
+                        <div class="hud-web-gauge">
+                            <span class="hud-web-icon">WEB</span>
+                            <div class="hud-web-bar-bg">
+                                <div id="hud-web-fill"></div>
+                            </div>
+                            <span id="hud-web-text">35 / 50</span>
+                        </div>
+                        <div id="hud-level-badge" style="background: rgba(10, 15, 25, 0.75); backdrop-filter: blur(8px); padding: 4px 10px; border-radius: 12px; border: 1px solid var(--electric-gold); font-size: 11px; font-weight: 700; color: #f1c40f;">
+                            <span id="hud-level-text">LEVEL 1: DISTRICT PATROL</span>
+                        </div>
+                    </div>
+
+                    <!-- Center: Score & Multipliers -->
+                    <div class="hud-center">
+                        <div class="hud-score-card">
+                            <div class="hud-score-label">SOARING SCORE</div>
+                            <div id="hud-score">0</div>
+                        </div>
+                        <div id="hud-combo-badge">
+                            <span id="hud-combo-text">COMBO x2</span>
+                        </div>
+                        <div id="hud-boost-badge">
+                            <span>⚡ SPIDER-SENSE</span>
+                            <span id="hud-boost-timer">8.0s</span>
+                        </div>
+                    </div>
+
+                    <!-- Right: Best Score & Quick Toggles -->
+                    <div class="hud-right">
+                        <div class="hud-highscore-box">
+                            <div class="hud-hs-label">BEST RECORD</div>
+                            <div id="hud-highscore">0</div>
+                        </div>
+                        <button class="hud-icon-btn" id="hud-mute-toggle" title="Toggle Sound">🔊</button>
+                        <button class="hud-icon-btn" id="btn-pause" title="Pause Game">⏸</button>
+                    </div>
+                </div>
+
+                <!-- Live Tutorial / Action Prompt Banner -->
+                <div id="hud-tutorial-prompt">
+                    🕸️ <strong>HOLD [W / ↑ / CLICK] TO SWING</strong> ➔ <strong>RELEASE TO CATAPULT!</strong>
+                </div>
+
+                <!-- Touch Controls Overlay for Mobile/Tablet -->
+                <div id="touch-controls">
+                    <div class="touch-cluster">
+                        <button class="touch-btn" id="btn-left">←<span>LEFT</span></button>
+                        <button class="touch-btn" id="btn-right">→<span>RIGHT</span></button>
+                        <button class="touch-btn" id="btn-dive">↓<span>DIVE</span></button>
+                    </div>
+                    <div class="touch-cluster">
+                        <button class="touch-btn action-jump" id="btn-swing">🕸<span>SWING</span></button>
+                        <button class="touch-btn action-shoot" id="btn-shoot">⚡<span>THWIP</span></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MAIN MENU SCREEN -->
+            <div id="main-menu">
+                <div class="menu-brand">
+                    <h1 class="menu-title">
+                        WEB SLINGER
+                        <span class="subtitle-gold">CITY RUSH</span>
+                    </h1>
+                    <p class="menu-tagline">Swing. Fight. Survive.</p>
+                </div>
+
+                <div class="menu-actions">
+                    <button class="comic-btn primary-btn" id="btn-play">START SWINGING</button>
+                    <button class="comic-btn secondary-btn" id="btn-how-to-play">HOW TO PLAY</button>
+                    <button class="comic-btn secondary-btn" id="btn-settings">SETTINGS</button>
+                </div>
+
+                <div class="menu-high-score-banner">
+                    ALL-TIME HIGH SCORE: <span id="menu-high-score">0</span>
+                </div>
+            </div>
+
+            <!-- MODALS OVERLAY -->
+            <div id="modal-overlay">
+                <!-- PAUSE MODAL -->
+                <div class="modal-card" id="modal-pause">
+                    <div class="modal-header">
+                        <h2 class="modal-title">MISSION PAUSED</h2>
+                    </div>
+                    <div class="modal-content">
+                        <p style="text-align: center; margin-bottom: 15px;">Mid-air pause! The city awaits your heroics.</p>
+                        <div class="modal-actions">
+                            <button class="comic-btn primary-btn" id="btn-resume">RESUME SWING</button>
+                            <button class="comic-btn secondary-btn" id="btn-restart-pause">RESTART</button>
+                            <button class="comic-btn secondary-btn" id="btn-menu-pause">MAIN MENU</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- GAME OVER MODAL -->
+                <div class="modal-card" id="modal-gameover">
+                    <div class="modal-header">
+                        <h2 class="modal-title title-gameover">PATROL OVER</h2>
+                    </div>
+                    <div class="modal-content">
+                        <div id="go-cause">K.O. IN ACTION</div>
+                        <div class="gameover-stats-grid">
+                            <div class="stat-tile stat-hero">
+                                <div id="go-new-record">★ NEW RECORD ★</div>
+                                <div class="stat-label">FINAL SCORE</div>
+                                <div class="stat-value" id="go-final-score">0</div>
+                            </div>
+                            <div class="stat-tile">
+                                <div class="stat-label">BEST RECORD</div>
+                                <div class="stat-value" id="go-best-score">0</div>
+                            </div>
+                            <div class="stat-tile">
+                                <div class="stat-label">VILLAINS DEFEATED</div>
+                                <div class="stat-value" id="go-enemies">0</div>
+                            </div>
+                            <div class="stat-tile">
+                                <div class="stat-label">DISTANCE SWUNG</div>
+                                <div class="stat-value" id="go-distance">0 m</div>
+                            </div>
+                            <div class="stat-tile">
+                                <div class="stat-label">MAX COMBO</div>
+                                <div class="stat-value" id="go-max-combo">x1</div>
+                            </div>
+                        </div>
+                        <div class="modal-actions">
+                            <button class="comic-btn primary-btn" id="btn-retry">SWING AGAIN</button>
+                            <button class="comic-btn secondary-btn" id="btn-menu-gameover">MAIN MENU</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- HOW TO PLAY MODAL -->
+                <div class="modal-card" id="modal-how-to-play">
+                    <div class="modal-header">
+                        <h2 class="modal-title">WEB-SWINGING GUIDE</h2>
+                        <button class="modal-close">&times;</button>
+                    </div>
+                    <div class="modal-content">
+                        <div class="instructions-list">
+                            <div class="instruction-row">
+                                <span class="inst-desc">HOLD TO SWING (Release = Catapult)</span>
+                                <div class="inst-keys">
+                                    <span class="inst-key">↑</span>
+                                    <span class="inst-key">W</span>
+                                    <span class="inst-key">SHIFT</span>
+                                    <span class="inst-key">CLICK</span>
+                                </div>
+                            </div>
+                            <div class="instruction-row">
+                                <span class="inst-desc">AIR DIVE (Build Momentum)</span>
+                                <div class="inst-keys">
+                                    <span class="inst-key">↓</span>
+                                    <span class="inst-key">S</span>
+                                </div>
+                            </div>
+                            <div class="instruction-row">
+                                <span class="inst-desc">SHOOT WEB / WEB-STRIKE</span>
+                                <div class="inst-keys">
+                                    <span class="inst-key">SPACE</span>
+                                    <span class="inst-key">J</span>
+                                </div>
+                            </div>
+                            <div class="instruction-row">
+                                <span class="inst-desc">STEER / PUMP SWING</span>
+                                <div class="inst-keys">
+                                    <span class="inst-key">←</span>
+                                    <span class="inst-key">→</span>
+                                    <span class="inst-key">A</span>
+                                    <span class="inst-key">D</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="powerups-guide">
+                            <div class="pw-item">
+                                <div class="pw-dot" style="background: #70d6ff; box-shadow: 0 0 6px #70d6ff;"></div>
+                                <span>Web Cartridge (+20 Web)</span>
+                            </div>
+                            <div class="pw-item">
+                                <div class="pw-dot" style="background: #ff4757; box-shadow: 0 0 6px #ff4757;"></div>
+                                <span>Medkit (+1 Health)</span>
+                            </div>
+                            <div class="pw-item">
+                                <div class="pw-dot" style="background: #f1c40f; box-shadow: 0 0 6px #f1c40f;"></div>
+                                <span>Spider-Sense (2x DMG + Slow)</span>
+                            </div>
+                            <div class="pw-item">
+                                <div class="pw-dot" style="background: #2ed573; box-shadow: 0 0 6px #2ed573;"></div>
+                                <span>Score Token (+500 Pts)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SETTINGS MODAL -->
+                <div class="modal-card" id="modal-settings">
+                    <div class="modal-header">
+                        <h2 class="modal-title">SETTINGS</h2>
+                        <button class="modal-close">&times;</button>
+                    </div>
+                    <div class="modal-content">
+                        <div class="settings-form">
+                            <div class="setting-row">
+                                <span class="setting-label">Music Enabled</span>
+                                <div class="setting-control">
+                                    <input type="checkbox" id="setting-music-toggle" checked>
+                                </div>
+                            </div>
+                            <div class="setting-row">
+                                <span class="setting-label">Music Volume</span>
+                                <div class="setting-control">
+                                    <input type="range" id="setting-music-vol" min="0" max="1" step="0.05" value="0.6">
+                                </div>
+                            </div>
+                            <div class="setting-row">
+                                <span class="setting-label">Sound Effects</span>
+                                <div class="setting-control">
+                                    <input type="checkbox" id="setting-sound-toggle" checked>
+                                </div>
+                            </div>
+                            <div class="setting-row">
+                                <span class="setting-label">Sound FX Volume</span>
+                                <div class="setting-control">
+                                    <input type="range" id="setting-sound-vol" min="0" max="1" step="0.05" value="0.8">
+                                </div>
+                            </div>
+                            <div class="setting-row">
+                                <span class="setting-label">Difficulty</span>
+                                <div class="setting-control">
+                                    <select id="setting-difficulty">
+                                        <option value="easy">Easy (Casual)</option>
+                                        <option value="normal" selected>Normal (Standard)</option>
+                                        <option value="hard">Hard (Heroic)</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="setting-row">
+                                <span class="setting-label">Screen Shake FX</span>
+                                <div class="setting-control">
+                                    <input type="checkbox" id="setting-shake" checked>
+                                </div>
+                            </div>
+                            <div class="setting-row">
+                                <span class="setting-label">Particles Quality</span>
+                                <div class="setting-control">
+                                    <input type="checkbox" id="setting-particles" checked>
+                                </div>
+                            </div>
+                            <div class="setting-row" style="margin-top: 10px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 12px;">
+                                <span class="setting-label">Reset Game Data</span>
+                                <div class="setting-control">
+                                    <button class="btn-danger" id="setting-reset-stats">Reset Records</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- GAME SCRIPTS IN DEPENDENCY ORDER -->
+    <script src="js/storage.js"></script>
+    <script src="js/audio.js"></script>
+    <script src="js/camera.js"></script>
+    <script src="js/effects.js"></script>
+    <script src="js/background.js"></script>
+    <script src="js/city.js"></script>
+    <script src="js/powerups.js"></script>
+    <script src="js/enemy.js"></script>
+    <script src="js/player.js"></script>
+    <script src="js/level.js"></script>
+    <script src="js/input.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/game.js"></script>
+</body>
+</html>
