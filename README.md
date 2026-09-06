@@ -1,70 +1,43 @@
 ﻿# 🕷️ Spiderverse: Web Slinger (City Rush)
 
-[![HTML5 Canvas](https://img.shields.io/badge/HTML5-Canvas-E34F26?style=for-the-badge&logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API)
-[![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
-[![Web Audio API](https://img.shields.io/badge/Audio-Web%20Audio%20API-70D6FF?style=for-the-badge)](https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API)
-[![Responsive](https://img.shields.io/badge/Design-Responsive%20%26%20Mobile%20Ready-2ED573?style=for-the-badge)](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Responsive_Design)
+<p align="center">
+  <img src="images/spider-head.png" alt="Spiderverse Logo" width="100"/>
+</p>
 
-> **"Swing. Fight. Survive."**  
-> An action-packed, modern HTML5 Canvas web-slinging superhero game featuring physics-based pendulum swinging, wrist-mounted web shooter combat, 1v1 villain wave encounters, Spider-Sense danger detection, and an authentic comic-book aesthetic.
+<p align="center">
+  <strong>An action-packed, web-swinging HTML5 Canvas superhero arcade game.</strong>
+</p>
 
----
-
-## 📜 Credits & Original Project Attribution
-
-> [!IMPORTANT]
-> This project (**Spiderverse**) is a **substantially redesigned, expanded, and refactored version** of the open-source project **[Spiderman](https://github.com/Lukakva/Spiderman)** originally created by **[Lukakva (Luka Kvavilashvili)](https://github.com/Lukakva)**.
-
-* **Original Artwork & Concept**: Foundational 2D Spider-Man sprites and concept are credited to [Lukakva/Spiderman](https://github.com/Lukakva/Spiderman).
-* **Modifications & Redesign**: Created and engineered by **[Aditthan J K](https://github.com/Aditthan-07)**, introducing:
-  * Physics-based pendulum web-swinging, directional steering, braking, and catapult launching
-  * Spacebar wrist web-shooter projectile engine with web-tangle stun mechanics
-  * Paced 1-at-a-time villain wave incursions (Hover Drones, Glider Rogues, Symbiote Brutes)
-  * Real-time Spider-Sense threat warning crown with collision prediction
-  * High-performance Web Audio API procedural synthesizer
-  * Atmospheric multi-layer parallax night cityscape
-  * Responsive glassmorphic HUD, touch controls, and particle FX
-* **Soundtrack Attribution**: Spider-Man Meme Song audio sourced from [QuickSounds](https://quicksounds.com/sound/22127/spiderman-meme-song).
+<p align="center">
+  <a href="#-tech-stack"><img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white" alt="HTML5"></a>
+  <a href="#-tech-stack"><img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white" alt="CSS3"></a>
+  <a href="#-tech-stack"><img src="https://img.shields.io/badge/JavaScript-ES6+-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" alt="JavaScript"></a>
+  <a href="#-tech-stack"><img src="https://img.shields.io/badge/Canvas_API-E34F26?style=for-the-badge&logo=html5&logoColor=white" alt="Canvas API"></a>
+  <a href="#-tech-stack"><img src="https://img.shields.io/badge/Web_Audio_API-70D6FF?style=for-the-badge" alt="Web Audio API"></a>
+  <a href="#-tech-stack"><img src="https://img.shields.io/badge/LocalStorage-2ED573?style=for-the-badge" alt="LocalStorage"></a>
+</p>
 
 ---
 
 ## 🎮 Game Overview
 
-**Spiderverse: Web Slinger** transforms the classic superhero browser concept into a fluid, momentum-driven web-slinging adventure. Built with vanilla JavaScript and HTML5 Canvas (zero external frameworks), players navigate high-altitude skyscraper canyons, battle iconic villains in structured wave incursions, and chain acrobatic web catapults across the New York City skyline.
+**Spiderverse: Web Slinger** is a momentum-driven, physics-based 2D superhero game designed for smooth browser gameplay across desktop and mobile devices. Players take control of Spider-Man navigating high-altitude skyscraper canyons, battling iconic villains in structured wave encounters, and executing acrobatic web catapults across the New York City skyline.
 
 ---
 
 ## ✨ Key Features
 
-### 🕸️ Physics-Based Web-Swinging & Catapult Locomotion
-- **True Pendulum Physics**: Hold W / ↑ / Click to latch onto skyscraper spires and crane arms, swinging through canyons in smooth, natural arcs.
-- **Directional Steering & Braking**: Use D / → to pump forward momentum or A / ← to apply reverse braking for precision landings.
-- **Apex Catapult Release**: Release the swing at the peak of the forward arc to launch high into the air with an athletic momentum boost.
-- **Air Dive & Rooftop Sprinting**: Dive straight down (S / ↓) to build speed before low-canyon swings, and sprint smoothly across rooftop ledges.
-
-### 💥 Wrist Web-Shooters & Combat (Spacebar)
-- **High-Velocity Web Projectiles**: Tap Spacebar to shoot webs directly at villains.
-- **Web Tangle & Freeze Stun**: Web hits damage enemies and cocoon them for **1.4 seconds**, immobilizing them in mid-air so you can finish them or swing safely past.
-- **Dynamic Combos**: Chain attacks without taking hits to rack up score multipliers (COMBO x2!, COMBO x3!).
-
-### 🦹 Structured 1v1 Villain Wave Encounters
-Villains spawn one at a time with advance threat alerts:
-1. **Level 1 — Hover Drones**: Scout drones firing telegraphed energy lasers. Destroyed in 1 web shot.
-2. **Level 2 — Glider Rogues (Green Goblin)**: Soaring aerial rogues dropping glowing Pumpkin Bombs. Defeated in 2 web shots.
-3. **Level 3 — Symbiote Brutes (Venom)**: Wall-clinging heavy brutes lunging at close range. Defeated in 3 web shots.
-4. **Level Up Rewards**: Completing each wave grants **+35 Web Ammo** and **+1 Health Heart**.
-
-### 🛡️ Spider-Sense Threat Warning Crown
-- A radiant yellow/red danger crown flashes over Spider-Man's head whenever an incoming projectile is on a collision course, alerting you to swing, dive, or dodge.
-- **1.5-second Invulnerability Buffer** after taking damage to ensure fair, non-punishing combat.
-
-### 🌆 Calm, Atmospheric Cityscape Visuals
-- Multi-layer parallax dusk/night skyline with steady, ambient illuminated windows (no distracting glittering or flashing).
-- Comic action popups (*"THWIP!"*, *"SWING!"*, *"CATAPULT!"*, *"POW!"*), particle sparks, and subtle camera trauma shake.
-
-### 🎵 Soundtrack & Audio Engine
-- Web Audio API real-time procedural synthesizer for instant sound effects.
-- High-fidelity looping soundtrack featuring the authentic Spider-Man Meme Song.
+* **🕸️ True Pendulum Web-Swinging**: Physics-driven swinging mechanics with directional momentum pumping (D / →) and precision braking (A / ←).
+* **🚀 Apex Catapult Boost**: Release swings at the forward apex to slingshot high into the air and clear rooftop gaps.
+* **💥 Wrist Web-Shooter Combat (Spacebar)**: Fire high-velocity web projectiles to damage and temporarily tangle/freeze oncoming enemies in mid-air.
+* **🦹 1v1 Villain Wave Encounters**:
+  * **Level 1 — Hover Drones**: Scout drones firing energy bolts (1-hit defeat).
+  * **Level 2 — Glider Rogues (Green Goblin)**: Aerial flyers tossing glowing Pumpkin Bombs (2-hit defeat).
+  * **Level 3 — Symbiote Brutes (Venom)**: Heavy wall-clinging chargers (3-hit defeat).
+* **⚡ Spider-Sense Threat Warning**: A visual danger crown alerts you whenever enemy projectiles approach, enabling rapid evasive maneuvers.
+* **🎵 Zero-Latency Audio Synthesis**: Real-time sound effect generation powered by the Web Audio API alongside an energetic looping soundtrack.
+* **🌆 Atmospheric Parallax Skyline**: Clean multi-layer dusk/night backdrop with ambient illuminated skyscrapers and particle FX.
+* **📱 Fully Responsive**: Seamless touch controls and scalable viewport for mobile, tablet, and desktop play.
 
 ---
 
@@ -75,46 +48,37 @@ Villains spawn one at a time with advance threat alerts:
 | **Shoot Web** | SPACEBAR | Z / J | Right-Click / Touch THWIP Button |
 | **Web Swing** | Hold W / ↑ | Shift | Left-Click & Hold / Touch SWING Button |
 | **Move Left / Brake** | A | ← (Left Arrow) | Virtual D-Pad Left |
-| **Move Right / Accelerate**| D | → (Right Arrow)| Virtual D-Pad Right |
+| **Move Right / Accelerate** | D | → (Right Arrow) | Virtual D-Pad Right |
 | **Dive Down** | S | ↓ (Down Arrow) | Virtual D-Pad Down |
 | **Pause / Resume** | ESC | P | Top Bar Pause Icon |
 
 ---
 
-## 🏗️ Project Architecture
+## 🛠️ Tech Stack
 
-`
-Spiderverse/
-├── index.html              # Modern semantic HTML5 shell & HUD overlay
-├── css/
-│   └── spiderman-game.css  # Superhero comic theme, glassmorphism HUD & touch UI
-├── js/
-│   ├── player.js           # Spider-Man physics, pendulum swinging, web shooting & animations
-│   ├── enemy.js            # Enemy archetypes (Drones, Glider Rogues, Brutes) & AI
-│   ├── level.js            # Wave progression manager, 1v1 encounter pacing & level rewards
-│   ├── city.js             # Skyscraper canyon procedural generation & anchor points
-│   ├── background.js       # Calm multi-layer parallax night sky & static ambient skyline
-│   ├── camera.js           # Smooth horizontal camera tracking & screen shake trauma
-│   ├── effects.js          # Particle systems & comic burst text popups ("THWIP!")
-│   ├── powerups.js         # Collectibles (Web fluid, medkits, score tokens)
-│   ├── audio.js            # Web Audio API synthesizer & BGM player
-│   ├── input.js            # Unified input manager (Keyboard, Mouse & Touch)
-│   ├── storage.js          # Persistent local storage (High scores & settings)
-│   ├── ui.js               # HUD overlays, health bars & game modals
-│   └── game.js             # Core game loop & collision pipeline
-├── audio/                  # Audio soundtrack assets
-├── images/                 # Authentic 2D character sprites & assets
-└── README.md               # Project documentation
-`
+| Technology | Purpose & Implementation |
+| :--- | :--- |
+| **HTML5** | Semantic application shell, HUD overlay containers, and canvas viewport |
+| **CSS3** | Responsive glassmorphic UI, comic typography, touch controls, and modal animations |
+| **JavaScript (ES6+)** | Core game engine, modular state management, collision detection, and wave logic |
+| **HTML5 Canvas API** | High-performance 60 FPS 2D procedural rendering, parallax backgrounds, and particle emitters |
+| **Web Audio API** | Real-time procedural sound effect synthesizer and dynamic BGM playback |
+| **Web Storage API** | Local persistence for high scores, best distances, combos, and user settings |
 
 ---
 
-## 🚀 Running the Game Locally
+## 🚀 How to Run Locally
 
 ### Option 1: Direct in Browser
-Open index.html directly in any modern browser (Chrome, Edge, Firefox, Safari).
+Simply clone the repository and open index.html in any modern web browser:
+`ash
+git clone https://github.com/Aditthan-07/Spiderverse.git
+cd Spiderverse
+`
+Double-click index.html to play.
 
 ### Option 2: Local HTTP Server (Recommended)
+For optimal audio streaming and asset loading:
 `ash
 # Using Node.js
 npx serve .
@@ -122,10 +86,17 @@ npx serve .
 # Or using Python 3
 python -m http.server 8080
 `
-Then visit http://localhost:8080 in your web browser.
+Open **http://localhost:8080** in your browser.
+
+---
+
+## 🌐 Live Demo
+
+Play the live game directly in your browser:  
+👉 **[Play Spiderverse Live](https://aditthan-07.github.io/Spiderverse/)**
 
 ---
 
 ## ⚖️ Disclaimer
 
-*Spiderverse: Web Slinger* is an educational, non-commercial fan-made project. Spider-Man and associated characters, names, and related indicia are trademarks and copyrights of Marvel Entertainment, LLC and Sony Pictures Entertainment Inc. This project does not claim ownership of the original intellectual property or original assets.
+*Spiderverse: Web Slinger* is an educational, non-commercial fan project. Spider-Man and associated characters, names, and related indicia are trademarks and copyrights of Marvel Entertainment, LLC and Sony Pictures Entertainment Inc.
