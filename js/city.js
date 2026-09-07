@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Web Slinger: City Rush - Skyscraper City & Web Anchor System
  * Generates clean, atmospheric skyscrapers with solid rooftops and anchor points for seamless web-swinging.
  */
@@ -188,14 +188,15 @@
                 var dx = anchor.x - playerX;
                 var dy = anchor.y - playerY;
 
-                if (dy > -20) continue;
-                if (dx < -40 || dx > 380) continue;
+                // Web must hook onto a structure above or in front of the player
+                if (dy > 30) continue;
+                if (dx < -30 || dx > 420) continue;
 
                 var dist = Math.sqrt(dx * dx + dy * dy);
-                if (dist < 60 || dist > 440) continue;
+                if (dist < 50 || dist > 460) continue;
 
-                var forwardBias = Math.abs(dx - 120);
-                var score = dist + forwardBias * 0.7;
+                var forwardBias = Math.abs(dx - 130);
+                var score = dist + forwardBias * 0.6;
 
                 if (score < minScore) {
                     minScore = score;
@@ -204,12 +205,15 @@
             }
         }
 
-        if (!bestAnchor) {
-            bestAnchor = {
-                x: playerX + 130,
-                y: Math.max(20, playerY - 220),
-                type: 'SKY_ANCHOR'
-            };
+        // If no anchor found within ideal cone, snap directly to the nearest ahead building's roof corner
+        if (!bestAnchor && this.buildings.length > 0) {
+            for (var j = 0; j < this.buildings.length; j++) {
+                var b2 = this.buildings[j];
+                if (b2.x + b2.width > playerX) {
+                    bestAnchor = b2.anchors[0] || { x: b2.x + 25, y: b2.topY - 15, type: 'ROOF_EDGE' };
+                    break;
+                }
+            }
         }
 
         return bestAnchor;

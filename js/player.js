@@ -567,7 +567,7 @@
         var rx = this.x - cameraX;
         var ry = this.y;
 
-        // 1. High-Tension Web Line when Swinging
+        // 1. High-Tension Web Line when Swinging (Firmly Attached to Physical Building Anchor)
         if (this.isSwinging && this.anchor) {
             var anchorRx = this.anchor.x - cameraX;
             var anchorRy = this.anchor.y;
@@ -575,7 +575,7 @@
             var handY = ry + 8;
 
             ctx.save();
-            ctx.strokeStyle = 'rgba(112, 214, 255, 0.5)';
+            ctx.strokeStyle = 'rgba(112, 214, 255, 0.4)';
             ctx.lineWidth = 4;
             ctx.beginPath();
             ctx.moveTo(anchorRx, anchorRy);
@@ -583,16 +583,27 @@
             ctx.stroke();
 
             ctx.strokeStyle = '#ffffff';
-            ctx.lineWidth = 1.8;
+            ctx.lineWidth = 2;
             ctx.beginPath();
             ctx.moveTo(anchorRx, anchorRy);
             ctx.lineTo(handX, handY);
             ctx.stroke();
 
-            ctx.fillStyle = '#70d6ff';
+            // Web impact node on building
+            ctx.fillStyle = '#ffffff';
             ctx.beginPath();
-            ctx.arc(anchorRx, anchorRy, 4.5, 0, Math.PI * 2);
+            ctx.arc(anchorRx, anchorRy, 4, 0, Math.PI * 2);
             ctx.fill();
+
+            ctx.strokeStyle = '#ffffff';
+            ctx.lineWidth = 1.2;
+            ctx.beginPath();
+            ctx.moveTo(anchorRx - 6, anchorRy - 3);
+            ctx.lineTo(anchorRx + 6, anchorRy + 3);
+            ctx.moveTo(anchorRx - 6, anchorRy + 3);
+            ctx.lineTo(anchorRx + 6, anchorRy - 3);
+            ctx.stroke();
+
             ctx.restore();
         }
 
