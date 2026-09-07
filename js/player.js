@@ -258,18 +258,21 @@
 
         var dx = (this.x + this.width / 2) - this.anchor.x;
         var dy = (this.y + 10) - this.anchor.y;
-        this.webLength = Math.max(115, Math.sqrt(dx * dx + dy * dy));
+        this.webLength = Math.max(100, Math.sqrt(dx * dx + dy * dy));
         this.swingAngle = Math.atan2(dx, dy);
 
         // Convert linear speed into pendulum angular velocity with smooth entry clamping
         var projectedSpeed = (this.vx * Math.cos(this.swingAngle) - this.vy * Math.sin(this.swingAngle));
         this.angularVelocity = projectedSpeed / this.webLength;
         
-        // Fast, athletic entry (+12% boost) without uncontrollable snap
-        if (this.angularVelocity < 1.0) {
-            this.angularVelocity = 1.25;
-        } else if (this.angularVelocity > 2.05) {
-            this.angularVelocity = 2.05;
+        // Fast, athletic entry with short-web responsiveness
+        var minEntry = (this.webLength < 180) ? 1.6 : 1.25;
+        var maxEntry = (this.webLength < 180) ? 2.8 : 2.05;
+
+        if (this.angularVelocity < minEntry) {
+            this.angularVelocity = minEntry;
+        } else if (this.angularVelocity > maxEntry) {
+            this.angularVelocity = maxEntry;
         }
 
         var audio = window.WebSlingerAudio;
@@ -288,17 +291,17 @@
             return;
         }
 
-        // Swift, athletic pendulum physics (+12% boost: swingGravity = 675)
-        var swingGravity = 675;
+        // Swift, athletic pendulum physics with short-web responsiveness
+        var swingGravity = (this.webLength < 180) ? 750 : 675;
         var gravityTorque = -(swingGravity / this.webLength) * Math.sin(this.swingAngle);
 
         // Interactive steering & momentum pumping:
-        // Right/D or Swing pumps forward acceleration; Left/A applies controlled braking
+        var pumpMult = (this.webLength < 180) ? 1.3 : 1.0;
         var pump = 0;
         if (input.right || input.swing) {
-            pump = this.swingPumpForce * Math.cos(this.swingAngle);
+            pump = this.swingPumpForce * pumpMult * Math.cos(this.swingAngle);
         } else if (input.left) {
-            pump = -this.swingPumpForce * Math.cos(this.swingAngle);
+            pump = -this.swingPumpForce * pumpMult * Math.cos(this.swingAngle);
         }
 
         this.angularVelocity += (gravityTorque + pump) * dt;
@@ -306,8 +309,9 @@
         // Smooth air damping for natural pendulum deceleration at the apex
         this.angularVelocity *= Math.pow(0.993, dt * 60);
 
-        // Max angular speed allows swift escape from villains while maintaining full visual control
-        this.angularVelocity = Math.max(-2.65, Math.min(2.65, this.angularVelocity));
+        // Max angular speed allows swift escape while maintaining full visual control
+        var maxAngSpeed = (this.webLength < 180) ? 3.1 : 2.65;
+        this.angularVelocity = Math.max(-maxAngSpeed, Math.min(maxAngSpeed, this.angularVelocity));
 
         this.swingAngle += this.angularVelocity * dt;
 
@@ -316,11 +320,15 @@
         this.y = (this.anchor.y + Math.cos(this.swingAngle) * this.webLength) - 10;
 
         var tangentSpeed = this.angularVelocity * this.webLength;
+        if (this.webLength < 180 && this.angularVelocity > 0) {
+            tangentSpeed = Math.max(260, tangentSpeed);
+        }
+
         this.vx = tangentSpeed * Math.cos(this.swingAngle);
         this.vy = -tangentSpeed * Math.sin(this.swingAngle);
         this.facing = (this.vx >= 0) ? 1 : -1;
 
-        if (Math.abs(tangentSpeed) > 370) {
+        if (Math.abs(tangentSpeed) > 360) {
             var fx = window.WebSlingerEffects;
             if (fx) fx.addSpeedTrail(this.x + this.width / 2, this.y + this.height / 2, '#70d6ff');
         }
@@ -333,18 +341,23 @@
 
     SpiderMan.prototype.releaseSwing = function() {
         if (!this.isSwinging) return;
+        var isShort = (this.webLength < 180);
         this.isSwinging = false;
 
-        if (this.vx > 50) {
-            this.vx = Math.min(490, this.vx * 1.15 + 35); // Crisp catapult boost to easily outrun villains
-            this.vy = Math.min(-240, this.vy - 80); // Clean upward arc
+        if (this.vx > 45) {
+            var boost = isShort ? 1.25 : 1.15;
+            var flat = isShort ? 55 : 35;
+            var up = isShort ? -100 : -80;
+
+            this.vx = Math.min(500, Math.max(300, this.vx * boost + flat));
+            this.vy = Math.min(-250, this.vy + up);
 
             var audio = window.WebSlingerAudio;
             if (audio) audio.playSfx('jump');
 
             var fx = window.WebSlingerEffects;
             if (fx) {
-                fx.addPopup(this.x + this.width / 2, this.y - 15, 'CATAPULT!', '#f1c40f', 22);
+                fx.addPopup(this.x + this.width / 2, this.y - 15, isShort ? 'QUICK SLING!' : 'CATAPULT!', '#f1c40f', 22);
                 fx.addSpeedTrail(this.x + this.width / 2, this.y + this.height / 2, '#ffffff');
             }
         }
@@ -415,7 +428,7 @@
                     if (Math.abs(this.vx) < 5) this.vx = 0;
                 }
 
-                // Jump from rooftop
+                // Jump from rooftop (dedicated Key K / X or swing tap)
                 if (input.jumpPressed || input.swingPressed) {
                     this.vy = -480;
                     this.onGround = false;

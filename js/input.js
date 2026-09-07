@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Web Slinger: City Rush - Unified Input Manager
  * Supports Web-Swinging controls (Hold Swing, Release Slingshot, Dive, Web-Strike) on Keyboard, Mouse, and Touch.
  */
@@ -11,6 +11,8 @@
         this.down = false;
         this.swing = false;
         this.swingPressed = false;
+        this.jump = false;
+        this.jumpPressed = false;
         this.shoot = false;
         this.shootPressed = false;
         this.pausePressed = false;
@@ -46,6 +48,11 @@
                 self.swing = true;
                 e.preventDefault();
             }
+            if (code === 'KeyK' || code === 'KeyX') {
+                if (!self.jump) self.jumpPressed = true;
+                self.jump = true;
+                e.preventDefault();
+            }
             if (code === 'Space' || code === 'KeyJ' || code === 'KeyZ') {
                 if (!self.shoot) self.shootPressed = true;
                 self.shoot = true;
@@ -73,6 +80,9 @@
             }
             if (code === 'ArrowUp' || code === 'KeyW' || code === 'ShiftLeft' || code === 'ShiftRight') {
                 self.swing = false;
+            }
+            if (code === 'KeyK' || code === 'KeyX') {
+                self.jump = false;
             }
             if (code === 'Space' || code === 'KeyJ' || code === 'KeyZ') {
                 self.shoot = false;
@@ -141,6 +151,10 @@
         bindButton('btn-left', function() { self.left = true; }, function() { self.left = false; });
         bindButton('btn-right', function() { self.right = true; }, function() { self.right = false; });
         bindButton('btn-dive', function() { self.down = true; }, function() { self.down = false; });
+        bindButton('btn-jump', function() {
+            if (!self.jump) self.jumpPressed = true;
+            self.jump = true;
+        }, function() { self.jump = false; });
         bindButton('btn-swing', function() {
             if (!self.swing) self.swingPressed = true;
             self.swing = true;
@@ -154,6 +168,7 @@
 
     InputManager.prototype.consumePresses = function() {
         this.swingPressed = false;
+        this.jumpPressed = false;
         this.shootPressed = false;
         this.pausePressed = false;
     };
@@ -164,6 +179,8 @@
         this.down = false;
         this.swing = false;
         this.swingPressed = false;
+        this.jump = false;
+        this.jumpPressed = false;
         this.shoot = false;
         this.shootPressed = false;
         this.pausePressed = false;
