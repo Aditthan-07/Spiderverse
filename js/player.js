@@ -109,6 +109,7 @@
         this.isSwinging = false;
         this.isDiving = false;
         this.onGround = false;
+        this.hasAirJumped = false;
         this.facing = 1;
 
         // Swing Pendulum Parameters
@@ -121,6 +122,7 @@
         this.gravity = 800;
         this.airResistance = 0.993;
         this.groundMoveSpeed = 265;
+        this.sprintMoveSpeed = 420;
         this.swingPumpForce = 2.1;
 
         // Animation & Timers
@@ -152,6 +154,7 @@
         this.vy = 0;
         this.isSwinging = false;
         this.isDiving = false;
+        this.hasAirJumped = false;
         this.anchor = null;
         this.health = this.maxHealth;
         this.web = 35;
@@ -255,6 +258,7 @@
         this.isSwinging = true;
         this.isDiving = false;
         this.onGround = false;
+        this.hasAirJumped = false;
 
         var dx = (this.x + this.width / 2) - this.anchor.x;
         var dy = (this.y + 10) - this.anchor.y;
@@ -295,8 +299,9 @@
         var swingGravity = (this.webLength < 180) ? 750 : 675;
         var gravityTorque = -(swingGravity / this.webLength) * Math.sin(this.swingAngle);
 
-        // Interactive steering & momentum pumping:
+        // Interactive steering & momentum pumping (enhanced with Shift sprint):
         var pumpMult = (this.webLength < 180) ? 1.3 : 1.0;
+        if (input.sprint) pumpMult *= 1.25;
         var pump = 0;
         if (input.right || input.swing) {
             pump = this.swingPumpForce * pumpMult * Math.cos(this.swingAngle);
@@ -416,33 +421,64 @@
         // 2. Rooftop / Free Airborne State
         if (!this.isSwinging) {
             if (this.onGround) {
+                var currentSpeed = input.sprint ? this.sprintMoveSpeed : this.groundMoveSpeed;
+
                 // Running across rooftop
                 if (input.left) {
-                    this.vx = -this.groundMoveSpeed;
+                    this.vx = -currentSpeed;
                     this.facing = -1;
                 } else if (input.right) {
-                    this.vx = this.groundMoveSpeed;
+                    this.vx = currentSpeed;
                     this.facing = 1;
                 } else {
                     this.vx *= 0.85;
                     if (Math.abs(this.vx) < 5) this.vx = 0;
                 }
 
-                // Jump from rooftop (dedicated Key K / X or swing tap)
+                // Sprint VFX trail on ground
+                if (input.sprint && Math.abs(this.vx) > 280) {
+                    var fx = window.WebSlingerEffects;
+                    if (fx && Math.random() < 0.35) {
+                        fx.addSpeedTrail(this.x + this.width / 2, this.y + this.height / 2, '#70d6ff');
+                    }
+                }
+
+                // Jump from rooftop (SPACE)
                 if (input.jumpPressed || input.swingPressed) {
-                    this.vy = -480;
+                    this.vy = input.sprint ? -530 : -480;
                     this.onGround = false;
+                    this.hasAirJumped = false;
                     var audio = window.WebSlingerAudio;
                     if (audio) audio.playSfx('jump');
+
+                    var fx2 = window.WebSlingerEffects;
+                    if (fx2) {
+                        fx2.addPopup(this.x + this.width / 2, this.y - 15, input.sprint ? 'SPRINT JUMP!' : 'JUMP!', '#f1c40f', 20);
+                        fx2.addSpeedTrail(this.x + this.width / 2, this.y + this.height / 2, '#ffffff');
+                    }
                 }
 
                 this.x += this.vx * dt;
             } else {
-                // Airborne Navigation
+                // Mid-air Jump / Acrobatics Leap (SPACE)
+                if (input.jumpPressed && !this.hasAirJumped) {
+                    this.hasAirJumped = true;
+                    this.vy = -430;
+                    this.vx = Math.min(520, this.vx + (input.sprint ? 90 : 50));
+                    var audio = window.WebSlingerAudio;
+                    if (audio) audio.playSfx('jump');
+                    var fxJump = window.WebSlingerEffects;
+                    if (fxJump) {
+                        fxJump.addPopup(this.x + this.width / 2, this.y - 15, 'AIR LEAP!', '#70d6ff', 20);
+                        fxJump.addSpeedTrail(this.x + this.width / 2, this.y + this.height / 2, '#70d6ff');
+                    }
+                }
+
+                // Airborne Navigation (S = Dive)
                 if (input.down) {
                     this.isDiving = true;
                     this.vy += this.gravity * 2.0 * dt;
-                    this.vx = Math.min(500, this.vx + 150 * dt); // Controlled dive momentum
+                    this.vx = Math.min(520, this.vx + 160 * dt); // Controlled dive momentum
                     var fx = window.WebSlingerEffects;
                     if (fx) fx.addSpeedTrail(this.x + this.width / 2, this.y + this.height / 2, '#ffffff');
                 } else {
@@ -454,11 +490,21 @@
                     this.vx = Math.max(-230, this.vx - 450 * dt);
                     this.facing = -1;
                 } else if (input.right) {
-                    this.vx = Math.min(480, this.vx + 520 * dt);
+                    this.vx = Math.min(500, this.vx + (input.sprint ? 680 : 520) * dt);
                     this.facing = 1;
                 } else {
                     // Smooth forward cruise stabilization
-                    this.vx += (260 - this.vx) * Math.min(1.0, 1.5 * dt);
+                    var cruiseTarget = input.sprint ? 360 : 260;
+                    this.vx += (cruiseTarget - this.vx) * Math.min(1.0, 1.5 * dt);
+                }
+
+                // Airborne Sprint Boost (SHIFT)
+                if (input.sprint) {
+                    this.vx = Math.min(540, this.vx + 260 * dt);
+                    var fxAir = window.WebSlingerEffects;
+                    if (fxAir && Math.random() < 0.3) {
+                        fxAir.addSpeedTrail(this.x + this.width / 2, this.y + this.height / 2, '#70d6ff');
+                    }
                 }
 
                 this.vx *= Math.pow(this.airResistance, dt * 60);
@@ -467,9 +513,10 @@
             }
         }
 
-        // Running animation frame cycle
+        // Running animation frame cycle (faster frame rate during sprint)
         if (this.onGround && Math.abs(this.vx) > 10) {
-            if (this.animTime % 0.12 < dt) {
+            var frameInterval = input.sprint ? 0.07 : 0.12;
+            if (this.animTime % frameInterval < dt) {
                 this.runFrameIndex = (this.runFrameIndex + 1) % this.runningCycle.length;
             }
         } else {
@@ -523,6 +570,7 @@
                     this.y = bTop - this.height;
                     this.vy = 0;
                     this.onGround = true;
+                    this.hasAirJumped = false;
                     this.isDiving = false;
 
                     if (!wasOnGround) {

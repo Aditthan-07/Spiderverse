@@ -1,4 +1,4 @@
-﻿# 🕷️ Spiderverse: Web Slinger (City Rush)
+# 🕷️ Spiderverse: Web Slinger (City Rush)
 
 <p align="center">
   <img src="images/spider-head.png" alt="Spiderverse Logo" width="100"/>
@@ -43,14 +43,15 @@
 
 ## 🕹️ Controls Guide
 
-| Action | Primary Keyboard | Alternative Key | Mouse / Touch Controls |
-| :--- | :---: | :---: | :---: |
-| **Shoot Web** | SPACEBAR | Z / J | Right-Click / Touch THWIP Button |
-| **Web Swing** | Hold W / ↑ | Shift | Left-Click & Hold / Touch SWING Button |
-| **Move Left / Brake** | A | ← (Left Arrow) | Virtual D-Pad Left |
-| **Move Right / Accelerate** | D | → (Right Arrow) | Virtual D-Pad Right |
-| **Dive Down** | S | ↓ (Down Arrow) | Virtual D-Pad Down |
-| **Pause / Resume** | ESC | P | Top Bar Pause Icon |
+| Action | Primary Key | Secondary / Mobile Controls | Function |
+| :--- | :---: | :---: | :--- |
+| **Swing** | **W** | Hold W / Left-Click / Touch SWING | Attach web line to physical building & swing (release to catapult) |
+| **Jump** | **SPACE** | Touch JUMP Button | Rooftop leap & acrobatic mid-air hop |
+| **Dive** | **S** | ↓ (Down Arrow) / Touch DIVE | Fast aerodynamic air-dive to build speed |
+| **Web** | **J** | Right-Click / Touch WEB Button | Fire high-velocity web projectile to damage & freeze villains |
+| **Move** | **A / D** | ← / → Arrows / Touch D-Pad | Steer left (brake) and steer right (accelerate) |
+| **Sprint** | **SHIFT** | Hold SHIFT | High-speed sprint boost on rooftops and mid-air flight |
+| **Pause** | **ESC** | P / Top Bar Pause Icon | Pause or resume patrol |
 
 ---
 

@@ -64,7 +64,7 @@
 
                 <!-- Live Tutorial / Action Prompt Banner -->
                 <div id="hud-tutorial-prompt">
-                    🕸️ <strong>HOLD [W / ↑ / CLICK] TO SWING</strong> ➔ <strong>RELEASE TO CATAPULT!</strong>
+                    🕸️ <strong>[W] SWING</strong> &bull; <strong>[SPACE] JUMP</strong> &bull; <strong>[S] DIVE</strong> &bull; <strong>[J] WEB</strong> &bull; <strong>[A/D] MOVE</strong> &bull; <strong>[SHIFT] SPRINT</strong>
                 </div>
 
                 <!-- Touch Controls Overlay for Mobile/Tablet -->
@@ -72,11 +72,12 @@
                     <div class="touch-cluster">
                         <button class="touch-btn" id="btn-left">←<span>LEFT</span></button>
                         <button class="touch-btn" id="btn-right">→<span>RIGHT</span></button>
-                        <button class="touch-btn" id="btn-dive">↓<span>DIVE</span></button>
+                        <button class="touch-btn" id="btn-dive">↓<span>DIVE (S)</span></button>
                     </div>
                     <div class="touch-cluster">
-                        <button class="touch-btn action-jump" id="btn-swing">🕸<span>SWING</span></button>
-                        <button class="touch-btn action-shoot" id="btn-shoot">⚡<span>THWIP</span></button>
+                        <button class="touch-btn" id="btn-jump">⬆<span>JUMP</span></button>
+                        <button class="touch-btn action-jump" id="btn-swing">🕸<span>SWING (W)</span></button>
+                        <button class="touch-btn action-shoot" id="btn-shoot">⚡<span>WEB (J)</span></button>
                     </div>
                 </div>
             </div>
@@ -165,42 +166,40 @@
                     <div class="modal-content">
                         <div class="instructions-list">
                             <div class="instruction-row">
-                                <span class="inst-desc">HOLD TO SWING (Release = Catapult)</span>
+                                <span class="inst-desc">SWING (Hold to Swing, Release to Catapult)</span>
                                 <div class="inst-keys">
-                                    <span class="inst-key">↑</span>
                                     <span class="inst-key">W</span>
-                                    <span class="inst-key">SHIFT</span>
-                                    <span class="inst-key">CLICK</span>
                                 </div>
                             </div>
                             <div class="instruction-row">
-                                <span class="inst-desc">JUMP (Rooftops)</span>
+                                <span class="inst-desc">JUMP (Rooftops / Mid-Air Leap)</span>
                                 <div class="inst-keys">
-                                    <span class="inst-key">K</span>
-                                    <span class="inst-key">X</span>
+                                    <span class="inst-key">SPACE</span>
                                 </div>
                             </div>
                             <div class="instruction-row">
-                                <span class="inst-desc">AIR DIVE (Build Momentum)</span>
+                                <span class="inst-desc">DIVE (Build Speed & Momentum)</span>
                                 <div class="inst-keys">
-                                    <span class="inst-key">↓</span>
                                     <span class="inst-key">S</span>
                                 </div>
                             </div>
                             <div class="instruction-row">
-                                <span class="inst-desc">SHOOT WEB / WEB-STRIKE</span>
+                                <span class="inst-desc">WEB (Shoot / Web-Strike)</span>
                                 <div class="inst-keys">
-                                    <span class="inst-key">SPACE</span>
                                     <span class="inst-key">J</span>
                                 </div>
                             </div>
                             <div class="instruction-row">
-                                <span class="inst-desc">STEER / PUMP SWING</span>
+                                <span class="inst-desc">MOVE (Steer Left / Right)</span>
                                 <div class="inst-keys">
-                                    <span class="inst-key">←</span>
-                                    <span class="inst-key">→</span>
                                     <span class="inst-key">A</span>
                                     <span class="inst-key">D</span>
+                                </div>
+                            </div>
+                            <div class="instruction-row">
+                                <span class="inst-desc">SPRINT (High-Speed Boost)</span>
+                                <div class="inst-keys">
+                                    <span class="inst-key">SHIFT</span>
                                 </div>
                             </div>
                         </div>

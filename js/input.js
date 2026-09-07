@@ -15,6 +15,8 @@
         this.jumpPressed = false;
         this.shoot = false;
         this.shootPressed = false;
+        this.sprint = false;
+        this.sprintPressed = false;
         this.pausePressed = false;
 
         this.touchActive = false;
@@ -31,6 +33,7 @@
         window.addEventListener('keydown', function(e) {
             var code = e.code || e.key;
 
+            // A / D or Left / Right = Move
             if (code === 'ArrowLeft' || code === 'KeyA') {
                 self.left = true;
                 e.preventDefault();
@@ -39,25 +42,36 @@
                 self.right = true;
                 e.preventDefault();
             }
+            // S or Down = Dive
             if (code === 'ArrowDown' || code === 'KeyS') {
                 self.down = true;
                 e.preventDefault();
             }
-            if (code === 'ArrowUp' || code === 'KeyW' || code === 'ShiftLeft' || code === 'ShiftRight') {
+            // W or Up = Swing
+            if (code === 'ArrowUp' || code === 'KeyW') {
                 if (!self.swing) self.swingPressed = true;
                 self.swing = true;
                 e.preventDefault();
             }
-            if (code === 'KeyK' || code === 'KeyX') {
+            // SPACE = Jump
+            if (code === 'Space') {
                 if (!self.jump) self.jumpPressed = true;
                 self.jump = true;
                 e.preventDefault();
             }
-            if (code === 'Space' || code === 'KeyJ' || code === 'KeyZ') {
+            // J = Web (Shoot / Strike)
+            if (code === 'KeyJ') {
                 if (!self.shoot) self.shootPressed = true;
                 self.shoot = true;
                 e.preventDefault();
             }
+            // SHIFT = Sprint
+            if (code === 'ShiftLeft' || code === 'ShiftRight') {
+                if (!self.sprint) self.sprintPressed = true;
+                self.sprint = true;
+                e.preventDefault();
+            }
+            // ESC or P = Pause
             if (code === 'Escape' || code === 'KeyP') {
                 self.pausePressed = true;
                 e.preventDefault();
@@ -78,14 +92,17 @@
             if (code === 'ArrowDown' || code === 'KeyS') {
                 self.down = false;
             }
-            if (code === 'ArrowUp' || code === 'KeyW' || code === 'ShiftLeft' || code === 'ShiftRight') {
+            if (code === 'ArrowUp' || code === 'KeyW') {
                 self.swing = false;
             }
-            if (code === 'KeyK' || code === 'KeyX') {
+            if (code === 'Space') {
                 self.jump = false;
             }
-            if (code === 'Space' || code === 'KeyJ' || code === 'KeyZ') {
+            if (code === 'KeyJ') {
                 self.shoot = false;
+            }
+            if (code === 'ShiftLeft' || code === 'ShiftRight') {
+                self.sprint = false;
             }
 
             delete self.keysDown[code];
@@ -170,6 +187,7 @@
         this.swingPressed = false;
         this.jumpPressed = false;
         this.shootPressed = false;
+        this.sprintPressed = false;
         this.pausePressed = false;
     };
 
@@ -183,6 +201,8 @@
         this.jumpPressed = false;
         this.shoot = false;
         this.shootPressed = false;
+        this.sprint = false;
+        this.sprintPressed = false;
         this.pausePressed = false;
     };
 
