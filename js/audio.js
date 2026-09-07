@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Web Slinger: City Rush - Audio Manager
  * Features Web Audio API synthesis for zero-lag sound effects & Spider-Man meme song background music player.
  */
@@ -6,6 +6,7 @@
     'use strict';
 
     var BGM_TRACKS = [
+        { name: "Spiderman Theme (Alison Brown Quartet)", src: "audio/spiderman-theme-alison-brown.mp3" },
         { name: "Spider-Man Meme Song", src: "audio/spiderman-meme-song.mp3" },
         { name: "Amazing Hero", src: "audio/amazing-spider-man-2.mp3" },
         { name: "Animated Series", src: "audio/animated-series-theme.mp3" },
