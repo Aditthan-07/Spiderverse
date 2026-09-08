@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Web Slinger: City Rush - UI Manager
  * Features interactive on-screen tutorial hints, clear mission tracker, and glassmorphism HUD.
  */
@@ -40,6 +40,7 @@
             menuHighScore: document.getElementById('menu-high-score'),
 
             settingMusicToggle: document.getElementById('setting-music-toggle'),
+            settingSoundtrack: document.getElementById('setting-soundtrack'),
             settingSoundToggle: document.getElementById('setting-sound-toggle'),
             settingMusicVol: document.getElementById('setting-music-vol'),
             settingSoundVol: document.getElementById('setting-sound-vol'),
@@ -154,6 +155,13 @@
             });
         }
 
+        if (this.dom.settingSoundtrack) {
+            this.dom.settingSoundtrack.addEventListener('change', function(e) {
+                var idx = parseInt(e.target.value, 10);
+                if (audio) audio.setTrack(idx);
+            });
+        }
+
         if (this.dom.settingSoundToggle) {
             this.dom.settingSoundToggle.addEventListener('change', function(e) {
                 if (audio) audio.setSoundEnabled(e.target.checked);
@@ -206,6 +214,7 @@
     UIManager.prototype.syncSettingsUI = function() {
         var s = (window.WebSlingerStorage && window.WebSlingerStorage.getSettings()) || {};
         if (this.dom.settingMusicToggle) this.dom.settingMusicToggle.checked = !!s.musicEnabled;
+        if (this.dom.settingSoundtrack) this.dom.settingSoundtrack.value = s.soundtrackIndex !== undefined ? s.soundtrackIndex : 0;
         if (this.dom.settingSoundToggle) this.dom.settingSoundToggle.checked = !!s.soundEnabled;
         if (this.dom.settingMusicVol) this.dom.settingMusicVol.value = s.musicVolume !== undefined ? s.musicVolume : 0.6;
         if (this.dom.settingSoundVol) this.dom.settingSoundVol.value = s.soundVolume !== undefined ? s.soundVolume : 0.8;

@@ -23,13 +23,15 @@
             soundEnabled: true,
             musicEnabled: true,
             soundVolume: 0.8,
-            musicVolume: 0.7
+            musicVolume: 0.7,
+            soundtrackIndex: 0
         };
 
         this.soundEnabled = settings.soundEnabled;
         this.musicEnabled = settings.musicEnabled;
         this.soundVolume = settings.soundVolume !== undefined ? settings.soundVolume : 0.8;
         this.musicVolume = settings.musicVolume !== undefined ? settings.musicVolume : 0.7;
+        this.currentTrackIndex = settings.soundtrackIndex !== undefined ? settings.soundtrackIndex : 0;
         
         this.initAudioContext();
         this.initBgm();
@@ -67,7 +69,7 @@
     AudioManager.prototype.initBgm = function() {
         var self = this;
         this.bgmElement = new Audio();
-        this.bgmElement.loop = true; // Seamless loop for meme theme
+        this.bgmElement.loop = true; // Seamless loop for theme
         this.bgmElement.volume = this.musicEnabled ? this.musicVolume : 0;
 
         this.bgmElement.addEventListener('ended', function() {
@@ -76,7 +78,7 @@
             }
         });
 
-        this.setTrack(0); // Set to spiderman-meme-song.mp3
+        this.setTrack(this.currentTrackIndex);
     };
 
     AudioManager.prototype.setTrack = function(index) {
@@ -88,6 +90,9 @@
                 var playPromise = this.bgmElement.play();
                 if (playPromise) playPromise.catch(function() {});
             }
+        }
+        if (window.WebSlingerStorage) {
+            window.WebSlingerStorage.updateSettings({ soundtrackIndex: this.currentTrackIndex });
         }
     };
 
