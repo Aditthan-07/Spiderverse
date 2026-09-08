@@ -688,6 +688,15 @@
             ctx.rotate(this.swingAngle * 0.6);
         } else if (this.isDiving) {
             ctx.rotate(0.6 * this.facing);
+        } else if (!this.onGround) {
+            if (this.hasAirJumped) {
+                // Acrobatic mid-air front flip / somersault
+                ctx.rotate(this.animTime * 12 * this.facing);
+            } else {
+                // Natural aerodynamic flight pitch
+                var pitch = Math.atan2(this.vy, Math.max(120, Math.abs(this.vx))) * 0.35;
+                ctx.rotate(pitch * this.facing);
+            }
         }
 
         if (this.facing < 0) {
