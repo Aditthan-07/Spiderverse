@@ -173,6 +173,30 @@ Experience the game directly in your browser without local setup:
 
 ---
 
+## 🤝 Contributing
+
+Contributions, bug reports, and gameplay suggestions are welcome! To maintain project stability and code quality, please adhere to the following workflow:
+
+1. **Fork the Repository**: Create your personal copy of [Spiderverse](https://github.com/Aditthan-07/Spiderverse).
+2. **Create a Feature Branch**:
+   ```bash
+   git checkout -b feature/your-feature-name
+   ```
+3. **Commit Your Changes**: Follow [Conventional Commits](https://www.conventionalcommits.org/) standards:
+   ```bash
+   git commit -m "feat(physics): enhance air-dive drag calculation"
+   ```
+4. **Push to Your Fork**:
+   ```bash
+   git push origin feature/your-feature-name
+   ```
+5. **Open a Pull Request**: Submit a PR against the `main` branch with a clear description of your modifications and testing notes.
+
+### Code of Conduct
+All contributors and maintainers are expected to maintain an inclusive, constructive, and respectful environment. Please uphold courteous communication and professional collaboration across all issues and pull requests.
+
+---
+
 ## ⚖️ Disclaimer
 
 *Spiderverse: Web Slinger* is an educational, non-commercial fan project. Spider-Man and associated characters, names, and related indicia are trademarks and copyrights of Marvel Entertainment, LLC and Sony Pictures Entertainment Inc.
