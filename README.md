@@ -34,17 +34,30 @@ Traditional web-based action games often struggle with input latency, bloated bu
 
 ## ✨ Key Features
 
-* **🕸️ True Pendulum Web-Swinging**: Physics-driven swinging mechanics with directional momentum pumping (D / →) and precision braking (A / ←).
-* **🚀 Apex Catapult Boost**: Release swings at the forward apex to slingshot high into the air and clear rooftop gaps.
-* **💥 Wrist Web-Shooter Combat (Spacebar)**: Fire high-velocity web projectiles to damage and temporarily tangle/freeze oncoming enemies in mid-air.
-* **🦹 1v1 Villain Wave Encounters**:
-  * **Level 1 — Hover Drones**: Scout drones firing energy bolts (1-hit defeat).
-  * **Level 2 — Glider Rogues (Green Goblin)**: Aerial flyers tossing glowing Pumpkin Bombs (2-hit defeat).
-  * **Level 3 — Symbiote Brutes (Venom)**: Heavy wall-clinging chargers (3-hit defeat).
-* **⚡ Spider-Sense Threat Warning**: A visual danger crown alerts you whenever enemy projectiles approach, enabling rapid evasive maneuvers.
-* **🎵 Zero-Latency Audio Synthesis**: Real-time sound effect generation powered by the Web Audio API alongside an energetic looping soundtrack.
-* **🌆 Atmospheric Parallax Skyline**: Clean multi-layer dusk/night backdrop with ambient illuminated skyscrapers and particle FX.
-* **📱 Fully Responsive**: Seamless touch controls and scalable viewport for mobile, tablet, and desktop play.
+- **🕸️ True Pendulum Web-Swinging Mechanics**:
+  - Physics-driven angular pendulum swinging with dynamic momentum pumping (`D` / `→`) and reverse braking (`A` / `←`).
+  - **Apex Catapult Launch**: Release swings precisely at the forward arc apex to slingshot high above skyscraper rooftops.
+
+- **💥 Projectile Combat & Web-Shooters (`Spacebar`)**:
+  - Fire high-velocity web projectiles to damage oncoming hostiles.
+  - Temporarily immobilize and tangle enemies in mid-air with freeze-stun mechanics.
+
+- **🦹 Structured 1v1 Villain Wave Progression**:
+  - **Level 1 — Hover Drones**: Agile scout drones discharging directed energy bolts (1-hit defeat).
+  - **Level 2 — Glider Rogues (Green Goblin)**: High-altitude aerial flyers hurling glowing Pumpkin Bombs (2-hit defeat).
+  - **Level 3 — Symbiote Brutes (Venom)**: Heavyweight wall-clinging chargers with close-range threat (3-hit defeat).
+
+- **⚡ Spider-Sense Threat Warning Indicator**:
+  - Real-time danger crown visual alert activates when enemy projectiles approach on collision courses, enabling proactive evasive maneuvers.
+
+- **🎵 Zero-Latency Audio Engine**:
+  - Instantaneous procedural sound effect synthesis via the Web Audio API, complemented by an energetic looping background soundtrack.
+
+- **🌆 Atmospheric Parallax Skyline**:
+  - High-performance multi-layered dusk-to-night urban backdrop featuring illuminated skyscraper windows and dynamic particle FX.
+
+- **📱 Fully Responsive Cross-Platform Design**:
+  - Dynamic viewport scaling with dedicated virtual on-screen touch controls, providing parity across desktop, tablet, and mobile browsers.
 
 ---
 
