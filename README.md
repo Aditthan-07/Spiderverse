@@ -75,16 +75,44 @@ Traditional web-based action games often struggle with input latency, bloated bu
 
 ---
 
-## 🛠️ Tech Stack
+## 🛠️ Architecture & Tech Stack
+
+### Core Technologies
 
 | Technology | Purpose & Implementation |
 | :--- | :--- |
-| **HTML5** | Semantic application shell, HUD overlay containers, and canvas viewport |
-| **CSS3** | Responsive glassmorphic UI, comic typography, touch controls, and modal animations |
-| **JavaScript (ES6+)** | Core game engine, modular state management, collision detection, and wave logic |
-| **HTML5 Canvas API** | High-performance 60 FPS 2D procedural rendering, parallax backgrounds, and particle emitters |
-| **Web Audio API** | Real-time procedural sound effect synthesizer and dynamic BGM playback |
-| **Web Storage API** | Local persistence for high scores, best distances, combos, and user settings |
+| **HTML5** | Semantic application shell, HUD overlay containers, and primary canvas viewport |
+| **CSS3** | Responsive glassmorphic UI, comic typography styling, touch controls, and modal transitions |
+| **JavaScript (ES6+)** | Modular game engine, physics calculations, collision detection, and wave state management |
+| **HTML5 Canvas API** | Hardware-accelerated 60 FPS 2D procedural rendering, parallax layers, and particle emitter pipelines |
+| **Web Audio API** | Real-time procedural audio synthesis, sound effect triggering, and background music management |
+| **Web Storage API (`localStorage`)** | Client-side persistence for high scores, records, active combo multipliers, and player audio settings |
+
+### Modular Architecture Breakdown
+
+```text
+Spiderverse/
+├── index.html              # Semantic HTML5 entry shell & interactive HUD overlay
+├── css/
+│   └── spiderman-game.css  # Superhero comic theme, glassmorphic HUD & responsive touch UI
+├── js/
+│   ├── game.js             # Central game loop, update tick, and state coordinator
+│   ├── player.js           # Spider-Man kinematics, pendulum swing physics & web attacks
+│   ├── enemy.js            # Enemy archetypes (Drones, Glider Rogues, Brutes) & projectile AI
+│   ├── level.js            # Wave progression logic, encounter pacing, and stage bonuses
+│   ├── city.js             # Procedural skyscraper generation and dynamic web anchor spires
+│   ├── background.js       # Multi-layer parallax dusk/night skyline rendering
+│   ├── camera.js           # Smooth horizontal camera tracking & screen trauma shake
+│   ├── effects.js          # Particle emitter systems & comic visual callouts ("THWIP!")
+│   ├── powerups.js         # Collectible tokens, health pick-ups, and web cartridges
+│   ├── audio.js            # Web Audio API synthesizer engine & soundtrack controller
+│   ├── input.js            # Unified input manager (Keyboard, Mouse, and Virtual Touch)
+│   ├── storage.js          # Persistent local storage for user scores and audio toggles
+│   └── ui.js               # HUD overlays, health indicators, and modal controllers
+├── audio/                  # Audio tracks and background music themes
+├── fonts/                  # Custom comic and arcade typography assets
+└── images/                 # Character sprites, villain graphics, and environment textures
+```
 
 ---
 
