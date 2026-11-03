@@ -1,3 +1,5 @@
+<div align="center">
+
 # 🕷️ Spiderverse: Web Slinger (City Rush)
 
 <p align="center">
@@ -5,7 +7,7 @@
 </p>
 
 <p align="center">
-  <strong>An action-packed, web-swinging HTML5 Canvas superhero arcade game.</strong>
+  <strong>An action-packed, momentum-driven HTML5 Canvas superhero arcade game.</strong>
 </p>
 
 <p align="center">
@@ -16,6 +18,8 @@
   <a href="#-tech-stack"><img src="https://img.shields.io/badge/Web_Audio_API-70D6FF?style=for-the-badge" alt="Web Audio API"></a>
   <a href="#-tech-stack"><img src="https://img.shields.io/badge/LocalStorage-2ED573?style=for-the-badge" alt="LocalStorage"></a>
 </p>
+
+</div>
 
 ---
 
@@ -72,7 +76,7 @@
 
 ### Option 1: Direct in Browser
 Simply clone the repository and open index.html in any modern web browser:
-`ash
+` ash
 git clone https://github.com/Aditthan-07/Spiderverse.git
 cd Spiderverse
 `
@@ -80,7 +84,7 @@ Double-click index.html to play.
 
 ### Option 2: Local HTTP Server (Recommended)
 For optimal audio streaming and asset loading:
-`ash
+` ash
 # Using Node.js
 npx serve .
 
