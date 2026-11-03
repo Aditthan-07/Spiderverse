@@ -197,6 +197,30 @@ All contributors and maintainers are expected to maintain an inclusive, construc
 
 ---
 
-## ⚖️ Disclaimer
+## ⚖️ Disclaimer & Intellectual Property
 
-*Spiderverse: Web Slinger* is an educational, non-commercial fan project. Spider-Man and associated characters, names, and related indicia are trademarks and copyrights of Marvel Entertainment, LLC and Sony Pictures Entertainment Inc.
+*Spiderverse: Web Slinger* is an educational, non-commercial fan project developed for portfolio and instructional purposes. Spider-Man and associated characters, names, audio themes, and related indicia are trademarks and copyrights of **Marvel Entertainment, LLC** and **Sony Pictures Entertainment Inc.** No copyright infringement is intended, and this repository claims no ownership over original intellectual property.
+
+---
+
+## 📜 Credits & Acknowledgments
+
+- **Original Project Foundation**: Foundational 2D character sprites and core concept originated from the open-source [Spiderman](https://github.com/Lukakva/Spiderman) repository created by **[Lukakva (Luka Kvavilashvili)](https://github.com/Lukakva)**.
+- **Redesign & Engineering**: Architecture overhaul, pendulum physics, web combat system, procedural city generation, audio synthesizer, and wave progression developed by **[Aditthan J K](https://github.com/Aditthan-07)**.
+- **Audio & Media**:
+  - Spider-Man Meme Theme sourced from [QuickSounds](https://quicksounds.com/sound/22127/spiderman-meme-song).
+  - Background music themes arranged from classic animated series and film adaptations.
+
+---
+
+## 📄 License
+
+The underlying source code of this project is licensed under the [MIT License](https://opensource.org/licenses/MIT). Game assets, characters, and related media remain the property of their respective copyright holders under non-commercial fair-use guidelines.
+
+---
+
+<div align="center">
+
+Made with ❤️ by [Aditthan J K](https://github.com/Aditthan-07) • [Back to Top ↑](#-spiderverse-web-slinger-city-rush)
+
+</div>
