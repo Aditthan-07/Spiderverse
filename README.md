@@ -25,7 +25,10 @@
 
 ## 🎮 Game Overview
 
-**Spiderverse: Web Slinger** is a momentum-driven, physics-based 2D superhero game designed for smooth browser gameplay across desktop and mobile devices. Players take control of Spider-Man navigating high-altitude skyscraper canyons, battling iconic villains in structured wave encounters, and executing acrobatic web catapults across the New York City skyline.
+**Spiderverse: Web Slinger** is a momentum-driven, physics-based 2D superhero arcade experience engineered entirely with vanilla web technologies. Designed for seamless, zero-install gameplay across modern desktop and mobile browsers, the project delivers high-framerate action without reliance on heavyweight external game engines or third-party plugins.
+
+### Motivation & Design Goals
+Traditional web-based action games often struggle with input latency, bloated bundle sizes, and artificial movement mechanics. *Spiderverse* tackles this by pairing authentic harmonic pendulum swing physics with responsive canvas rendering and low-latency audio synthesis. Players step into the role of Spider-Man, navigating towering skyscraper canyons, timing precision web catapults, and confronting escalating waves of classic villains across an atmospheric New York City skyline.
 
 ---
 
