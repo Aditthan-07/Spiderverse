@@ -61,17 +61,30 @@ Traditional web-based action games often struggle with input latency, bloated bu
 
 ---
 
-## 🕹️ Controls Guide
+## 🕹️ Controls & Gameplay Guide
+
+### Movement & Combat Controls
 
 | Action | Primary Key | Secondary / Mobile Controls | Function |
 | :--- | :---: | :---: | :--- |
-| **Swing** | **W** | Hold W / Left-Click / Touch SWING | Attach web line to physical building & swing (release to catapult) |
-| **Jump** | **SPACE** | Touch JUMP Button | Rooftop leap & acrobatic mid-air hop |
-| **Dive** | **S** | ↓ (Down Arrow) / Touch DIVE | Fast aerodynamic air-dive to build speed |
-| **Web** | **J** | Right-Click / Touch WEB Button | Fire high-velocity web projectile to damage & freeze villains |
-| **Move** | **A / D** | ← / → Arrows / Touch D-Pad | Steer left (brake) and steer right (accelerate) |
-| **Sprint** | **SHIFT** | Hold SHIFT | High-speed sprint boost on rooftops and mid-air flight |
-| **Pause** | **ESC** | P / Top Bar Pause Icon | Pause or resume patrol |
+| **Swing** | **`W`** | Hold `W` / Left-Click / Touch `SWING` | Attach web line to physical buildings and swing (release at apex to catapult) |
+| **Jump** | **`SPACE`** | Touch `JUMP` Button | Acrobatic rooftop leap and mid-air hop |
+| **Dive** | **`S`** | `↓` (Down Arrow) / Touch `DIVE` | Aerodynamic high-speed air-dive to build downward momentum |
+| **Web** | **`J`** | Right-Click / Touch `WEB` Button | Fire high-velocity web projectiles to damage and freeze enemies |
+| **Move** | **`A` / `D`** | `←` / `→` Arrows / Virtual D-Pad | Steer left (reverse brake) and steer right (forward acceleration) |
+| **Sprint** | **`SHIFT`** | Hold `SHIFT` | High-speed sprint boost across rooftop ledges and mid-air glides |
+| **Pause** | **`ESC`** | `P` / Top Bar Pause Icon | Pause or resume active patrol session |
+
+### Gameplay Mechanics & Tactical Tips
+- **Momentum Chaining**: Alternate between diving (`S`) into canyon drops and latching onto high spires (`W`) to maximize horizontal speed.
+- **Apex Catapulting**: Release `W` at the crest of Spider-Man's forward swing arc to slingshot over skyscraper gaps without losing altitude.
+- **Web-Freeze Tangle**: Keep distance from high-level villains by firing web bursts (`J`) to immobilize them before engaging.
+- **Threat Evasion**: Pay attention to the Spider-Sense crown danger indicator to initiate evasive dives or leaps prior to projectile impact.
+
+### Runtime Configuration & Settings
+- **Soundtrack Selection**: Switch between retro and modern background themes dynamically through the in-game settings dialog.
+- **Audio Synthesis Engine**: Real-time sound effect generation powered by the Web Audio API with volume state preservation.
+- **Client Persistence**: High scores, best distance runs, combo multipliers, and sound preferences automatically persist across sessions via the browser's `localStorage` API.
 
 ---
 
@@ -153,9 +166,9 @@ Once initialized, navigate to **http://localhost:8080** in your browser.
 
 ---
 
-## 🌐 Live Demo
+## 🌐 Live Demo & Deployment
 
-Play the live game directly in your browser:  
+Experience the game directly in your browser without local setup:  
 👉 **[Play Spiderverse Live](https://aditthan-07.github.io/Spiderverse/)**
 
 ---
