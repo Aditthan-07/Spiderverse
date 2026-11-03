@@ -116,26 +116,40 @@ Spiderverse/
 
 ---
 
-## 🚀 How to Run Locally
+## 🚀 Prerequisites & Installation
 
-### Option 1: Direct in Browser
-Simply clone the repository and open index.html in any modern web browser:
-` ash
+### Prerequisites
+Before running the game locally, ensure you have:
+- A modern web browser supporting **HTML5 Canvas** and the **Web Audio API** (Chrome, Firefox, Safari, Edge).
+- **Git** installed on your system.
+- *(Optional, for local HTTP serving)* **Node.js** (v14+) or **Python 3.x**.
+
+---
+
+### Step-by-Step Setup
+
+#### Option 1: Direct Browser Launch
+Clone the repository to your local machine and launch `index.html` directly:
+
+```bash
 git clone https://github.com/Aditthan-07/Spiderverse.git
 cd Spiderverse
-`
-Double-click index.html to play.
+```
 
-### Option 2: Local HTTP Server (Recommended)
-For optimal audio streaming and asset loading:
-` ash
+Open `index.html` directly in your preferred browser (or double-click the file in your file manager).
+
+#### Option 2: Local HTTP Server (Recommended)
+Running through a local web server ensures optimal audio streaming and asset loading:
+
+```bash
 # Using Node.js
 npx serve .
 
 # Or using Python 3
 python -m http.server 8080
-`
-Open **http://localhost:8080** in your browser.
+```
+
+Once initialized, navigate to **http://localhost:8080** in your browser.
 
 ---
 
